@@ -21,7 +21,8 @@ call
 
 when you record an initial visit from a user
 
-and 
+and
+
     Korboard::Client.new.record_signup(user.id,session[:session_id])
         
 to record a signup
