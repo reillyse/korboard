@@ -24,7 +24,7 @@ class Korboard::Client
 
   def record_visit identifier,options={ }
     options.merge! :user_profile => { :session_id => identifier }
-    record :signup,@iteration_number,identifier,options
+    record :visit,@iteration_number,identifier,options
   end
 
   
