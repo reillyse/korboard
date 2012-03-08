@@ -17,19 +17,21 @@ class Korboard::Client
   end
 
   # can do this for the rest too
-  def record_signup identifier,options=nil
+  def record_signup identifier,session_id,options={ }
+    options.merge! :user_profile => { :session_id => session_id , :user_id => identifier}
     record :signup,@iteration_number,identifier,options
   end
 
-  def record_visit identifier,options=nil
+  def record_visit identifier,options={ }
+    options.merge! :user_profile => { :session_id => identifier }
     record :signup,@iteration_number,identifier,options
   end
 
   
   
-  def record metric ,iteration_number, identifier, options =nil
+  def record metric ,iteration_number, identifier, options ={ }
     data = { :signup  => { :identifier => identifier }, :iteration => { :number => iteration_number }  }
-    data.merge(options) if options
+    data.merge!(options) 
     
     path = "/v1.1/#{metric.to_s.pluralize}?token=#{@token}"
 
