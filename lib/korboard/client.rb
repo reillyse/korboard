@@ -5,11 +5,11 @@ require 'active_support/inflector'
 
 class Korboard::Client
 
-  def initialize
+  def initialize params
 
 
-    @token = ::Rails.application.config.korboard.api_token
-    @iteration_number = ::Rails.application.config.korboard.iteration_number
+    @token = params[:api_secret]
+    @iteration_number = params[:iteration]
     @http = Net::HTTP.new('api.korboard.com')
     @headers = {
       'Content-Type' => 'application/json'
