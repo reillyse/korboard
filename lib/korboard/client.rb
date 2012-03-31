@@ -27,6 +27,11 @@ class Korboard::Client
     record :visit,@iteration_number,identifier,options
   end
 
+  def record_invite identifier,options={ }
+    options.merge! :user_profile => { :session_id => identifier }
+    record :invite,@iteration_number,identifier,options
+  end
+
   
   
   def record metric ,iteration_number, identifier, options ={ }
@@ -35,11 +40,15 @@ class Korboard::Client
     
     path = "/v1.1/#{metric.to_s.pluralize}?token=#{@token}"
 
-    resp, data = @http.post(path, data.to_json, @headers)
-    
-    print_response(resp,data) unless resp.code.to_i == 201
-    return resp.code.to_i == 201
-    
+    #wrap in a timeout so we don't slow shit down
+    Timeout::timeout(1){
+      resp, data = @http.post(path, data.to_json, @headers)
+      print_response(resp,data) unless resp.code.to_i == 201
+      return resp.code.to_i == 201
+    }
+    return false
+  rescue => e
+    puts e.message
   end
 
   
