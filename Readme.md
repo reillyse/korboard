@@ -5,15 +5,11 @@ Readme
 Configuration
 -------------
 
-This gem is used for interfacing with the Korboard API from Rails (its trivial to set it up without rails, just remove the config options)
-
-Configuration is in application.rb (or an initializer ) 
-
-    YOUR_APPLICATION_NAME::Application.config.korboard.api_token ="api_secret_for_product"
-    YOUR_APPLICATION_NAME::Application.config.korboard.iteration_number = 1 (your iteration number)
+This gem is used for interfacing with the Korboard API
 
 initializers/korboard.rb
-require "korboard"
+    
+    require "korboard"
     KORBOARD_CLIENT= Korboard::Client.new(:api_secret =>ENV['KORBOARD_SECRET'], :iteration => 1)
 
 Example Usage
