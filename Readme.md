@@ -12,6 +12,10 @@ Configuration is in application.rb (or an initializer )
     YOUR_APPLICATION_NAME::Application.config.korboard.api_token ="api_secret_for_product"
     YOUR_APPLICATION_NAME::Application.config.korboard.iteration_number = 1 (your iteration number)
 
+initializers/korboard.rb
+require "korboard"
+    KORBOARD_CLIENT= Korboard::Client.new(:api_secret =>ENV['KORBOARD_SECRET'], :iteration => 1)
+
 Example Usage
 -------------
 
@@ -26,5 +30,6 @@ and
     Korboard::Client.new.record_signup(user.id,session[:session_id])
         
 to record a signup
+
 
     
