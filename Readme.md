@@ -17,13 +17,13 @@ Example Usage
 
 call
 
-    Korboard::Client.new.record_visit(session[:session_id])
+    KORBOARD_CLIENT.record_visit(session[:session_id])
 
 when you record an initial visit from a user
 
 and
 
-    Korboard::Client.new.record_signup(user.id,session[:session_id])
+    KORBOARD_CLIENT.record_signup(user.id,session[:session_id])
         
 to record a signup
 
