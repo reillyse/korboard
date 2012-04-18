@@ -40,7 +40,7 @@ class Korboard::Client
   
   def record_paid identifier,options={ }
     options.merge! :user_profile => { :session_id => identifier }
-    record :value,@iteration_number,identifier,options
+    record :paid,@iteration_number,identifier,options
   end
     
   def record metric ,iteration_number, identifier, options ={ }
